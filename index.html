@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FitMagra · Dr. Juan Zaraza · Mes 04</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,13 +21,23 @@
 html{scroll-behavior:smooth;}
 body{background:var(--black);color:var(--white);font-family:var(--sans);overflow-x:hidden;font-size:15px;}
 
+/* Wrapper para header y nav sticky dentro del content */
+.sticky-wrap{
+  position:sticky;top:0;z-index:300;
+  background:rgba(8,15,8,.97);
+  backdrop-filter:blur(16px);
+}
 /* ── HEADER ── */
 .hdr{
   position:sticky;top:0;z-index:300;
   background:rgba(8,15,8,.97);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
+  height:52px;
+}
+.hdr-inner{
+  max-width:600px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 16px;height:52px;
+  padding:0 16px;height:100%;
 }
 .logo-txt{font-family:var(--serif);font-size:17px;font-weight:900;color:var(--lime);letter-spacing:-.5px;}
 .logo-txt span{color:var(--white);}
@@ -45,6 +55,9 @@ body{background:var(--black);color:var(--white);font-family:var(--sans);overflow
   position:sticky;top:52px;z-index:200;
   background:rgba(8,15,8,.98);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:600px;margin:0 auto;
   padding:6px 10px;
   display:flex;flex-direction:column;gap:5px;
 }
@@ -89,13 +102,17 @@ body{background:var(--black);color:var(--white);font-family:var(--sans);overflow
 
 /* ── BACK TO TOP ── */
 .top-btn{
-  position:fixed;bottom:24px;right:16px;z-index:500;
+  position:fixed;bottom:24px;right:calc(50% - 300px + 16px);z-index:500;
   width:46px;height:46px;border-radius:50%;
   background:var(--lime);color:var(--black);
   border:none;cursor:pointer;
   font-size:20px;font-weight:900;
   display:flex;align-items:center;justify-content:center;
   animation:topFirefly 1.5s infinite;
+}
+/* En móvil (<600px) va pegado al borde derecho normal */
+@media(max-width:620px){
+  .top-btn{right:16px;}
 }
 .top-btn:hover{background:#9fff6b;transform:scale(1.1);}
 .top-btn .arr{display:inline-block;animation:arrowBounce .6s infinite alternate;}
@@ -391,8 +408,10 @@ blockquote{border-left:2px solid var(--g);padding-left:12px;margin:12px 0;
 
 <!-- HEADER -->
 <header class="hdr">
-  <div class="logo-txt">FIT<span>MAGRA</span></div>
-  <div class="hdr-badge"><i></i> Mes 04 · Activo</div>
+  <div class="hdr-inner">
+    <div class="logo-txt">FIT<span>MAGRA</span></div>
+    <div class="hdr-badge"><i></i> Mes 04 · Activo</div>
+  </div>
 </header>
 
 <!-- HERO (no tab) -->
@@ -412,14 +431,16 @@ blockquote{border-left:2px solid var(--g);padding-left:12px;margin:12px 0;
 
 <!-- 2-ROW NAV -->
 <nav class="nav-wrap">
-  <div class="nav-row">
-    <button class="tab-btn active" onclick="T('resumen')" data-t="resumen">📊 Resumen</button>
-    <button class="tab-btn" onclick="T('entrenamiento')" data-t="entrenamiento">🏋️ Entrena</button>
-    <button class="tab-btn" onclick="T('nutricion')" data-t="nutricion">🥗 Nutrición</button>
-  </div>
-  <div class="nav-row">
-    <button class="tab-btn" onclick="T('magramind')" data-t="magramind">🤖 MagramindAI</button>
-    <button class="tab-btn" onclick="T('cerrar')" data-t="cerrar">🎯 Cerrar Mes</button>
+  <div class="nav-inner">
+    <div class="nav-row">
+      <button class="tab-btn active" onclick="T('resumen')" data-t="resumen">📊 Resumen</button>
+      <button class="tab-btn" onclick="T('entrenamiento')" data-t="entrenamiento">🏋️ Entrena</button>
+      <button class="tab-btn" onclick="T('nutricion')" data-t="nutricion">🥗 Nutrición</button>
+    </div>
+    <div class="nav-row">
+      <button class="tab-btn" onclick="T('magramind')" data-t="magramind">🤖 MagramindAI</button>
+      <button class="tab-btn" onclick="T('cerrar')" data-t="cerrar">🎯 Cerrar Mes</button>
+    </div>
   </div>
 </nav>
 
